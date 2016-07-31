@@ -1,0 +1,150 @@
+[ 2016-07-30T10:27:04+08:00 ] ::1 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000513s ]
+ERR: 无法加载模块:Favicon
+
+[ 2016-07-30T18:21:40+08:00 ] ::1 /Public/img/station-pic/xian.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000434s ]
+ERR: 无法加载模块:Public
+
+[ 2016-07-30T19:18:30+08:00 ] ::1 /Uploads/station_pic/xian.jgp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000318s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T20:07:52+08:00 ] 192.168.199.235 /service/foodList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000533s ]
+ERR: 无法加载模块:Service
+
+[ 2016-07-30T20:07:58+08:00 ] 192.168.199.235 /service/foodList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001070s ]
+ERR: 无法加载模块:Service
+
+[ 2016-07-30T20:08:00+08:00 ] 192.168.199.235 /service/movieList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000834s ]
+ERR: 无法加载模块:Service
+
+[ 2016-07-30T20:08:01+08:00 ] 192.168.199.235 /service/foodList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000903s ]
+ERR: 无法加载模块:Service
+
+[ 2016-07-30T20:38:14+08:00 ] 192.168.199.235 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000550s ]
+ERR: 无法加载模块:Favicon
+
+[ 2016-07-30T20:59:21+08:00 ] 192.168.199.235 /services/image/null
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001210s ]
+ERR: 无法加载模块:Services
+
+[ 2016-07-30T21:01:17+08:00 ] 192.168.199.235 /services/image/Zootopia.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000451s ]
+ERR: 无法加载模块:Services
+
+[ 2016-07-30T22:18:11+08:00 ] 192.168.199.235 /service/foodList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+ERR: 无法加载模块:Service
+
+[ 2016-07-30T22:23:43+08:00 ] 192.168.199.235 /Uploads/foodlist/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001200s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:26:35+08:00 ] 192.168.199.235 /Uploads/vedio_img/null
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000405s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:27:32+08:00 ] 192.168.199.235 /Uploads/vedio_img/null
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000371s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:29:13+08:00 ] 192.168.199.235 /Uploads/vedio_img/null
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:33:15+08:00 ] 192.168.199.235 /Uploads/vedio_img//web_trainServer/Uploads/food_img/1469324172_1686399948.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000639s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:33:15+08:00 ] 192.168.199.235 /Uploads/vedio_img//web_trainServer/Uploads/food_img/1469370996_702394217.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000543s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:33:15+08:00 ] 192.168.199.235 /Uploads/vedio_img//web_trainServer/Uploads/food_img/1469610101_1214927724.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000835s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:33:26+08:00 ] 192.168.199.235 /Uploads/vedio_img//web_trainServer/Uploads/food_img/1469370996_702394217.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000503s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:36:04+08:00 ] 192.168.199.235 /Uploads/food_img//web_trainServer/Uploads/food_img/1469324172_1686399948.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000408s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:36:04+08:00 ] 192.168.199.235 /Uploads/food_img//web_trainServer/Uploads/food_img/1469370996_702394217.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000586s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:36:04+08:00 ] 192.168.199.235 /Uploads/food_img//web_trainServer/Uploads/food_img/1469610101_1214927724.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000382s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:37:05+08:00 ] 192.168.199.235 /Uploads/food_img//web_trainServer/Uploads/food_img/1469324172_1686399948.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000377s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:37:05+08:00 ] 192.168.199.235 /Uploads/food_img//web_trainServer/Uploads/food_img/1469370996_702394217.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000992s ]
+ERR: 无法加载模块:Uploads
+
+[ 2016-07-30T22:37:05+08:00 ] 192.168.199.235 /Uploads/food_img//web_trainServer/Uploads/food_img/1469610101_1214927724.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000682s ]
+ERR: 无法加载模块:Uploads
+

@@ -1,0 +1,84 @@
+[ 2016-07-29T11:40:05+08:00 ] ::1 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000347s ]
+ERR: 无法加载模块:Favicon
+
+[ 2016-07-29T11:44:14+08:00 ] ::1 /web_trainServer/index.php/home/route/findroute/find/%E5%A4%AA%E5%8E%9F.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000284s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T11:46:30+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469324172_1686399948.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000520s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T11:46:30+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469370996_702394217.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000614s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T11:46:30+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469610101_1214927724.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T11:46:43+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469324172_1686399948.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000473s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T11:46:43+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469610101_1214927724.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000580s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T15:33:02+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469324172_1686399948.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000554s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T15:33:02+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469370996_702394217.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000685s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T15:33:02+08:00 ] ::1 /web_trainServer/Uploads/food_img/1469610101_1214927724.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000711s ]
+ERR: 无法加载模块:Web_trainServer
+
+[ 2016-07-29T16:52:49+08:00 ] ::1 /admin/admin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+ERR: 无法加载模块:Admin
+
+[ 2016-07-29T17:07:53+08:00 ] ::1 /admin/admin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000519s ]
+ERR: 无法加载模块:Admin
+
+[ 2016-07-29T17:08:24+08:00 ] 192.168.199.235 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000371s ]
+ERR: 无法加载模块:Favicon
+
+[ 2016-07-29T18:14:38+08:00 ] ::1 /honme/mobile/stations_by_train?train_id=%27k123%27
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000856s ]
+ERR: 无法加载模块:Honme
+

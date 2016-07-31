@@ -1,0 +1,99 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	color: #888;
+	line-height: 30px;
+	text-align: center;
+	background: url("img/login_background.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.form-bottom form button.btn {
+    width: 100%;
+}
+
+button.btn {
+    height: 50px;
+    margin: 0;
+    padding: 0 20px;
+    vertical-align: middle;
+    background: #5555FF;
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 50px;
+    color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    text-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+}
+
+.form-group{
+	margin-bottom: 15px;
+}
+
+.form-bottom{
+	padding: 25px 25px 30px 25px;
+	background: #eee;
+	border-radius: 0 0 4px 4px;
+	text-align: left;
+}
+
+.form-top-right{
+	float: left;
+	width: 25%;
+	padding-top:25px;
+	color: #ddd;
+	text-align: right;
+}
+
+.col-sm-offset-3 {
+    margin-left: 25%;
+}
+
+.col-sm-6 {
+    width: 50%;
+}
+
+.form-box{
+	margin-top: 35px;
+}
+
+.form-top{
+	overflow: hidden;
+	padding: 0 25px 15px 25px;
+	background: #fff;
+	border-radius: 4px 4px 0 0;
+	text-align: left;
+}
+
+.form-top-left{
+	float: left;;
+	width: 75%;
+	padding-top: 25px;
+}
+
+.row{
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+.container{
+	width: 1170px;
+}
+
+.inner-bg{
+	padding: 100px 0 170px 0;
+}
