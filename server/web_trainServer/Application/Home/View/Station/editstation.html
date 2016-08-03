@@ -19,10 +19,36 @@
   <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
   <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  <link href="__PUBLIC__/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="__PUBLIC__/fileinput/js/jquery-2.0.3.min.js"></script>
+  <script src="__PUBLIC__/fileinput/js/fileinput.js" type="text/javascript"></script>
+  <script src="__PUBLIC__/fileinput/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="__PUBLIC__/fileinput/js/fileinput_locale_zh.js" type="text/javascript"></script>
+  <script type="text/javascript">
+        function toVaild_station(){
+          if($("input[name='station']").val()==""){
+            $("#resultObj").text("*站点名称不能为空");
+            return false;
+          }
+          if($("input[name='province']").val()==""){
+            $("#resultObj").text("*所在省份名称不能为空");
+            return false;
+          }
+          return true;
+        }
+        function toVaild_station2(){
+          if($("#file-1").val()==""){
+            $("#station2").text("*没有上传图片");
+            return false;
+          }
+          return true;
+        }
+    </script>
 </head>
 <body>
 <!--[if lte IE 9]>
-<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
 <![endif]-->
 
@@ -41,9 +67,9 @@
           <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-          <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+    <!--       <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li> -->
+          <li><a href="{:U('home/admin/logout')}"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
       <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
@@ -61,14 +87,14 @@
           <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-sign-out"></span> 高铁管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
             <li><a href="{:U('home/station/station')}" class="am-cf"> 高铁站点</a></li>
-            <li><a href="{:U('home/route/route')}">高铁路线<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="{:U('home/route/route')}">高铁路线</a></li>
           </ul>
         </li>
         <li><a href="{:U('home/food/food')}"><span class="am-icon-sign-out"></span> 食品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 商品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 视频管理</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
+        <li><a href="{:U('home/commodity/commodity')}"><span class="am-icon-sign-out"></span> 商品管理</a></li>
+        <li><a href="{:U('home/score/score')}"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
+         <li><a href="{:U('home/vedio/vedio')}"><span class="am-icon-sign-out"></span> 视频管理</a></li>
+         <li><a href="{:U('home/travel/travel')}"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
       </ul>
 
     </div>
@@ -85,14 +111,15 @@
 
       <hr></hr>
 
-        <div class="am-tabs am-margin" data-am-tabs="">
+      <div class="am-tabs am-margin" data-am-tabs="">
       <ul class="am-tabs-nav am-nav am-nav-tabs">
-        <li class="am-active"><a href="#tab2">站点添加</a></li>
+        <li class="am-active"><a href="#tab1">站点编辑</a></li>
+        <li><a href="#tab2">站点图片编辑</a></li>
       </ul>
 
      
-
-        <div class="am-tab-panel am-fade am-active am-in" id="tab2">
+      <div style="-moz-user-select: none;" class="am-tabs-bd">
+        <div class="am-tab-panel am-fade am-active am-in" id="tab1">
         <foreach name="list" item="vo">
           <form class="am-form" method="post" action="{:U('home/station/to_editstation',array('s_id'=>$vo['s_id']))}">
           
@@ -114,6 +141,15 @@
                 <input class="am-input-sm" type="text" name="province" value="{$vo.s_province}">
               </div>
             </div>
+            
+            <div class="am-g am-margin-top-sm">
+              <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
+                站点描述
+              </div>
+              <div class="am-u-sm-12 am-u-md-10">
+                <textarea rows="10" placeholder="站点描述..." name="stationdiscribe">{$list1.0.description}</textarea>
+              </div>
+            </div>
 
             
             <div class="am-g am-margin-top">
@@ -121,12 +157,50 @@
                &nbsp;
               </div>
               <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
-               <button class="btn" type="submit" style="float:right"><span class="glyphicon glyphicon-ok"></span>提交编辑</button>
+              <font color="red"><div id='resultObj'></div></font>
+               <button type="submit" class="am-btn am-btn-primary am-btn-xs" style="float:right" onclick="return toVaild_station()">提交保存</button>
               </div>
             </div>
           </form>
           </foreach>
         </div>
+        <div class="am-tab-panel am-fade am-active am-in" id="tab2">
+        <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                站点名称:
+              </div>
+              <div class="am-u-sm-8 am-u-md-4">
+                {$vo.s_name}
+              </div>
+              <div class="am-hide-sm-only am-u-md-6"></div>
+          </div>
+        <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                当前图片:
+              </div>
+              <div class="am-u-sm-8 am-u-md-4">
+              <img src="{:C('STATION_IMG')}{$list1.0.img_url}" style="max-height:500px;max-width:100%">
+              </div>
+              <div class="am-hide-sm-only am-u-md-6"></div>
+        </div>
+
+        <div class="am-g am-margin-top">
+              <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
+                上传新的站点图片:
+              </div>
+              <form method="post" action="{:U('home/station/editstationimg')}" enctype="multipart/form-data">
+              <input type="text" name="station_id" value="{$vo.s_id}" style="display:none">
+              <div class="am-u-sm-12 am-u-md-10">
+                <div class="form-group">
+                     <input id="file-1" name="pic_all[]" type="file" class="file"  multiple=true>
+                </div>
+                <font color="red"><div id='station2'></div></font>
+                <button type="submit" class="am-btn am-btn-primary am-btn-xs" style="float:right" onclick="return toVaild_station2()()">提交保存</button>
+              </div>
+              </form>
+            </div>
+        </div>
+      </div>
 
 
       </div>
@@ -147,11 +221,24 @@
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="__PUBLIC__/assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src="__PUBLIC__/assets/js/amazeui.min.js"></script>
 <script src="__PUBLIC__/assets/js/app.js"></script>
 
 
 </body>
+<script type="text/javascript">
+function initFileInput(ctrName){
+    var control = $("#"+ctrName);
+    control.fileinput({
+        showUpload : false,
+        maxFileCount: 1,
+        language : 'zh',
+        allowedPreviewTypes : [ 'image' ],
+        allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+        maxFileSize : 2000,
+    });
+   }
+initFileInput("file-1");
+</script>
 </html>

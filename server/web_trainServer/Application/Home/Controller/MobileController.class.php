@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 namespace Home\Controller;
 use Think\Controller;
 class MobileController extends Controller{
@@ -144,38 +144,5 @@ class MobileController extends Controller{
     $this->assign('views',$end_result);
     $this->display();
 }
-
-public function vedios(){
-        $Film_Db = M('film');
-
-        $result = $Film_Db->order('f_id DESC')->select();
-        $res = array();
-      
-        if($result!=null){
-            $res ['result'] = true;
-
-            $res ['items'] =  $result;
-        }else{
-            $res ['result'] = false;
-        }
-
-         echo json_encode($res);
-    }
-
-    public function foodlist(){
-        $Food_Db = M('commodity');
-        $where   = 'Comm_Type = 1';
-        $result  = $Food_Db->where($where)->select();
-        $res = array();
-        if($result!=null){
-            $res ['result'] = true;
-
-            $res ['items'] =  $result;
-        }else{
-            $res ['result'] = false;
-        }
-
-        echo json_encode($res);
-    }
 
 }

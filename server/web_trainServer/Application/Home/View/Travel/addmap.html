@@ -22,71 +22,8 @@
         <script src="__PUBLIC__/fileinput/js/fileinput.js" type="text/javascript"></script>
         <script src="__PUBLIC__/fileinput/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="__PUBLIC__/fileinput/js/fileinput_locale_zh.js" type="text/javascript"></script>
-
-
-        <script type="text/javascript">
-
-        
-
-          $(document).ready(function(){
-
-
-            $("a[name=addRow]").click(function(){
-              $("table#routetable tbody tr:last").after('<tr><td> </td><td><input class="am-input-sm" type="text" name="station_name[]"></td><td><input class="am-input-sm" type="text" name="station_arrivetime[]"></td><td><input class="am-input-sm" type="text" name="station_leavetion[]"></td><td><a a href="javascript:void(0);" onclick="removeRow(this)"><span class="am-icon-trash-o"></span> 删除</a></td></tr>');
-              reorder();
-            });
-
-          });
-
-
-         function removeRow(obj) {
-
-          $(obj).parent().parent().remove();
-          reorder();
-        }
-
-          function reorder(){
-             var t01 = $("table#routetable tbody tr").length;
-             for(var i=0;i<t01;i++){
-             $("table#routetable tbody tr").eq(i).find("td").eq(0).html(i+1);
-           }
-          }
-
-        </script>
-
-        <script type="text/javascript">
-        function toVaild_route(){
-          var checkTime = /^(0\d{1}|1\d{1}|2[0-3]):[0-5]\d{1}:([0-5]\d{1})$/;
-          if($("input[name='route_number']").val()==""){
-            $("#resultObj").text("*路线编号不能为空");
-            return false;
-          }
-          var count = $("input[name='station_name[]']").length;
-          for(var i=0;i<count;i++){
-          if((($("input[name='station_name[]']").eq(i)).val())==""){
-            $("#resultObj").text("*站点名称不能为空");
-            return false;
-          }
-          }
-          for(var i=0;i<count;i++){
-            if(!(checkTime.test(($("input[name='station_arrivetime[]']").eq(i)).val()))){
-            $("#resultObj").text("*到站时间格式不正确，若为起点或中点，到站离站相同 时间格式例12:00:00");
-            return false;
-          }
-        }
-           for(var i=0;i<count;i++){
-            if(!(check.test(($("input[name='station_leavetion[]']").eq(i)).val()))){
-            $("#resultObj").text("*离站时间格式不正确，若为起点或中点，到站离站相同 时间格式例12:00:00");
-            return false;
-          }
-          }
-         
-          
-          return true;
-        }
-        </script>
     </head>
-    <body onload="reorder()">
+    <body>
 <!--[if lte IE 9]>
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
@@ -142,108 +79,79 @@
   <!-- sidebar end -->
 
   <!-- content start -->
-  <div class="admin-content">
+ <div class="admin-content">
     <div class="admin-content-body">
 
     <div class="am-cf am-padding am-padding-bottom-0">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">路线管理</strong>/<small>路线添加</small></div>
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">旅游管理</strong> / <small>编辑景点地图</small></div>
       </div>
 
       <hr></hr>
 
-    
         <div class="am-tabs am-margin" data-am-tabs="">
       <ul class="am-tabs-nav am-nav am-nav-tabs">
-        <li class="am-active"><a href="#tab2">路线添加</a></li>
+        <li class="am-active"><a href="#tab2">编辑景点地图</a></li>
       </ul>
 
      
 
         <div class="am-tab-panel am-fade am-active am-in" id="tab2">
-          <form class="am-form"  method="post" action="{:U('home/route/to_addroute')}">
+          <form class="am-form" method="post" action="{:U('home/travel/editmap')}" enctype="multipart/form-data">
             <div class="am-g am-margin-top">
               <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                路线编号
+                景点名称
               </div>
               <div class="am-u-sm-8 am-u-md-4">
-                <input class="am-input-sm" type="text" name="route_number">
+                {$list.0.sce_name}
               </div>
-              <div class="am-hide-sm-only am-u-md-6">*必填</div>
+              <div class="am-hide-sm-only am-u-md-6"></div>
             </div>
 
-
-      <div class="am-g am-margin-top">
-              <div class="am-u-md-2 am-text-right">
-                路线
+            <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                当前路线地图：
+                
               </div>
-              <div class="am-u-md-10 am-u-end col-end">
-      <table class="table table-bordered table-condensed" style="margin-top:20px;" id="routetable">
-        <thead>
-          <tr>
-            <th>
-              站点顺序
-            </th>
-            <th>
-              站点名称
-            </th>
-            <th>
-              到站时间
-            </th>
-             <th>
-              离站时间
-            </th>
-             <th>
-              操作
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="No">
-
-
-            </td>
-            <td>
-              <input class="am-input-sm" type="text" name="station_name[]">
-            </td>
-            <td>
-              <input class="am-input-sm" type="text" name="station_arrivetime[]">
-            </td>
-            <td>
-              <input class="am-input-sm" type="text" name="station_leavetion[]">
-            </td>
-            <td>
-             <!-- <a href="javascript:void(0);" name="removeRow" onclick="removeRow(this);"><span class="am-icon-trash-o"></span> 删除</a> -->
-            </td>
-          </tr>
-
-          <tr>
-            <td id="td1">
-
+              <div class="am-u-sm-8 am-u-md-4">
+                <?php
+                      if($list[0]['sce_router']=="scenic/router/default.png"){
+                      echo '该景点目前没有路线地图';
+                      }else{
+                      echo '
+                        <img src="'.C('MAP_IMG').$list[0]['sce_router'].'" style="width:90%;max-height:400px;">
+                     ';
+                      }
+                      ?>
+              </div>
+              <div class="am-hide-sm-only am-u-md-6"></div>
+            </div>
             
-            </td>
-            <td>
-              <input class="am-input-sm" type="text" name="station_name[]">
-            </td>
-            <td>
-              <input class="am-input-sm" type="text" name="station_arrivetime[]">
-            </td>
-            <td>
-              <input class="am-input-sm" type="text" name="station_leavetion[]">
-            </td>
-            <td>
-             <!-- <a href="javascript:void(0);" name="removeRow" onclick="removeRow(this);"><span class="am-icon-trash-o"></span> 删除</a> -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <font color="red"><div id='resultObj'></div></font>
-      <button type="submit" class="am-btn am-btn-primary am-btn-xs" style="float:right" onclick="return toVaild_route()">提交保存</button>
-       <!-- <button class="am-btn am-btn-default am-btn-xs am-text-secondary" name="addRow">添加一行</button> -->
-       <a href="javascript:void(0);" name="addRow">添加一行</a>
-          </div>
-        </form>
-      </div>
+          
+            <div class="am-g am-margin-top-sm">
+              <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
+                路线图片
+              </div>
+              <form method="post" enctype="multipart/form-data" action="{:U(home/travel/editmap)}">
+              <input type="text" name="sce_id" value="{$list.0.sce_id}" style="display:none">
+              <div class="am-u-sm-12 am-u-md-10">
+              
+                
+                <div class="form-group">
+                     <input id="file-1" name="pic_all[]" type="file" class="file"  multiple=true>
+                </div>
+                
+
+                <button type="submit" class="am-btn am-btn-primary am-btn-xs" style="float:right">提交保存</button>
+
+              </div>
+              </form>
+
+            </div>
+      
+
+           
+          </form>
+        </div>
 
         
 
@@ -256,4 +164,21 @@
 
 </body>
 
+
+
+
+<script>
+function initFileInput(ctrName){
+    var control = $("#"+ctrName);
+    control.fileinput({
+        showUpload : false,
+        maxFileCount: 1,
+        language : 'zh',
+        allowedPreviewTypes : [ 'image' ],
+        allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+        maxFileSize : 2000,
+    });
+   }
+initFileInput("file-1");
+</script>
 </html>

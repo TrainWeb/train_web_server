@@ -16,9 +16,9 @@
   <link rel="stylesheet" href="__PUBLIC__/assets/css/admin.css">
 
 
-  <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-  <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="__PUBLIC__/bootstrap/js/jquery.min.js"></script>
+  <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -61,14 +61,14 @@
           <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-sign-out"></span> 高铁管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
             <li><a href="{:U('home/station/station')}" class="am-cf"> 高铁站点</a></li>
-            <li><a href="{:U('home/route/route')}">高铁路线<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="{:U('home/route/route')}">高铁路线</a></li>
           </ul>
         </li>
         <li><a href="{:U('home/food/food')}"><span class="am-icon-sign-out"></span> 食品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 商品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 视频管理</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
+        <li><a href="{:U('home/commodity/commodity')}"><span class="am-icon-sign-out"></span> 商品管理</a></li>
+        <li><a href="{:U('home/score/score')}"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
+         <li><a href="{:U('home/vedio/vedio')}"><span class="am-icon-sign-out"></span> 视频管理</a></li>
+         <li><a href="{:U('home/travel/travel')}"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
       </ul>
 
     </div>
@@ -85,7 +85,7 @@
       
         <ul class="am-avg-sm-1 am-avg-md-3 am-margin am-padding am-text-center admin-content-list ">
               <li><a href="#" class="am-text-danger
-              "><span class="am-icon-btn am-icon-user-md"></span><br>订单申请数量<br>3000</a></li>
+              "><span class="am-icon-btn am-icon-user-md"></span><br>订单申请数量<br>{$count}</a></li>
               <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-recycle"></span><br>正在处理的订单数量<br>80082</a></li>
               <li><a href="#" class="am-text-secondary"><span class="am-icon-btn am-icon-briefcase"></span><br>成交订单数量<br>308</a></li>
         </ul>

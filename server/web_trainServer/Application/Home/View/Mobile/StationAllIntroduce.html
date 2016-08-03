@@ -1,9 +1,167 @@
 <!DOCTYPE html>
 <html>
 <head>
-<body>
-<h1>古城西安欢迎你</h1>
-<p> my id is  {$station}</p>
-</body>
+   <title>景点详情</title>
+   <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="__PUBLIC__/bootstrap/js/jquery.min.js"></script>
+  <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+	.text_con{
+		border: 1px solid #aaa;
+		padding: 5px 10px;
+		line-height: 18px;
+		color: #555;
+		background-color:#cddeff;
+		
+	}
+	.lazy{
+		display: block;
+	}
+	.title{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 60px;
+		line-height: 20px;
+		width: 100%;
+/* 		padding: 0 15px;
+		 */		
+		 color: #fff;
+		 background-color: #000;
+		background: rgba(0,0,0,0.5);
+		filter: alpha(opacity=50);
+	}
+	.m_btn{
+			display: inline-block;
+			padding: 0 10px;
+			color: #fff;
+			border-radius: 5px;
+			background: #ff9911;
+	}
+	.num{
+		line-height: 26px;
+	}
+	.title_span{
+		border-collapse: collapse;
+		line-height: 1.2em;
+		border-spacing: 3px;
+		color: black;
+	}
+	.show_views{
+		position: relative;
+		border: 1px solid #aaa;
+		border-spacing: 3px;
+		background-color: #f9f9f9;
+		color: black;
+		margin: 0.5em 0 0.5em 0;
+		padding: 0.2em;
+		width: 100%;
+	}
+</style>
+
 </head>
+<body>
+
+
+<div class="container" style="padding-top:20px;box-sizing:border-box;color:#252525">
+
+	<table class="show_views">
+		<tbody>
+			<tr>
+				<th style="text-align:center;
+				font-size:125%;font-weight:bold;font-size:1.25em;white-space:nowrap">
+				<span  class="title_span">
+					<span style="position:relative;bottom:0.2em;font-weight:normal;">{$station.station_province}</span>
+				</span>
+				<br>
+				<span class="city_span">
+					<span style="position:relative;
+					top:0.1em">
+						{$station.station_name}
+					</span>
+				</span>
+				</th>
+			</tr>
+			<tr>
+				<td style="text-align:center;
+				background-color:#cddeff;font-weight:bold;">
+					<img alt="站点图片" src="{:C('STATION_IMG')}{$station.station_img}" width="100%">
+					</img>
+				</td>
+			</tr>
+			<tr>
+				<td style="
+				background-color:#cddeff;font-weight:bold;">
+					<span>{$station.station_name}简介</span>
+					<br></br>
+					<span>{$station.station_des}</span>
+					
+				</td>
+			</tr>
+			<tr style="border:1px solid #aaa;">
+			<td style="text-align:center;
+				font-size:125%;font-weight:bold;font-size:1.25em;white-space:nowrap;">
+					<span>旅行景点</span>
+				</td>
+			</tr>
+			<foreach name="views" item="vo">
+			<tr>
+				<td>
+	<div class="col-md-12 column">
+	<div style="position:relative">
+		<img class="lazy" style="display:block;" src="{:C('SCE_IMG')}{$vo.sce_picture}" alt="西安华清池" width="100%"></img>
+	<div class="title">
+	<b>{$vo.sce_name}</b>
+	<br>
+	<span style="font-size: 12px;font-family: "microsoft yahei", arial;">{$vo.sce_address}</span>
+	</div>
+	</div>
+	<div class="text_con">
+		<p>
+			{$vo.description}
+		</p>
+	<div class="num">
+		<button class="m_btn" data-toggle="modal" data-target="#myModal{$vo.sce_id}">查看路线</button>
+
+		<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal{$vo.sce_id}" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              {$vo.sce_name}推荐路线
+            </h4>
+         </div>
+         <div class="modal-body">
+         <?php
+         if($vo['sce_router']=="scenic/router/default.png"){
+         echo '暂时没有推荐路线';
+         }else{
+         echo   '<img src="'.C('MAP_IMG').$vo['sce_router'].'" width="100%">';
+            }
+         ?>
+         </div>
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+	</div>
+	</div>
+	</div>
+				</td>
+			</tr>
+			</foreach>
+		</tbody>
+	</table>
+
+	</div>
+</div>
+
+
+	
+
+</body>
 </html>

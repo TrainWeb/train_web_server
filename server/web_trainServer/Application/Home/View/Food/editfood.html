@@ -19,10 +19,51 @@
   <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
   <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
   <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  <link href="__PUBLIC__/fileinput/css/bootstrap.min.css" rel="stylesheet">
+  <link href="__PUBLIC__/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="__PUBLIC__/fileinput/js/jquery-2.0.3.min.js"></script>
+  <script src="__PUBLIC__/fileinput/js/fileinput.js" type="text/javascript"></script>
+  <script src="__PUBLIC__/fileinput/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="__PUBLIC__/fileinput/js/fileinput_locale_zh.js" type="text/javascript"></script>
+  <script type="text/javascript">
+        function toVaild_efood(){
+
+          var checkNum =    /^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
+          var checkDiscounts =  /^(\d(\.\d)?|10)$/;
+          var checkNumber =  /^[0-9]*[1-9][0-9]*$/;
+          if($("input[name='foodname']").val()==""){
+            $("#food_1").text("*食品名称不能为空");
+            return false;
+          }
+          if(!(checkNum.test($("input[name='foodprice']").val()))){
+            $("#food_1").text("*食品价格输入格式不正确，应为数字");
+            return false;
+          }
+          if(!(checkDiscounts.test($("input[name='fooddiscounts']").val()))){
+            $("#food_1").text("*食品折扣需要在0-10之间");
+            return false;
+          }
+          if(!(checkNumber.test($("input[name='foodnumber']").val()))){
+            $("#food_1").text("*食品数量应为正整数");
+            return false;
+          }
+          
+          return true;
+        }
+
+        function toVaild_efood2(){
+          if($("#file-1").val()==""){
+            $("#food_2").text("*请上传一张关于食品的图片");
+            return false;
+          }
+          return true;
+        }
+        </script>
 </head>
 <body>
 <!--[if lte IE 9]>
-<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
 <![endif]-->
 
@@ -41,9 +82,9 @@
           <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-          <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+    <!--       <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li> -->
+          <li><a href="{:U('home/admin/logout')}"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
       <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
@@ -52,7 +93,7 @@
 </header>
 
 <div class="am-cf admin-main">
-  <!-- sidebar start -->
+   <!-- sidebar start -->
   <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
     <div class="am-offcanvas-bar admin-offcanvas-bar">
       <ul class="am-list admin-sidebar-list">
@@ -61,14 +102,14 @@
           <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-sign-out"></span> 高铁管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
             <li><a href="{:U('home/station/station')}" class="am-cf"> 高铁站点</a></li>
-            <li><a href="{:U('home/route/route')}">高铁路线<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="{:U('home/route/route')}">高铁路线</a></li>
           </ul>
         </li>
         <li><a href="{:U('home/food/food')}"><span class="am-icon-sign-out"></span> 食品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 商品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 视频管理</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
+        <li><a href="{:U('home/commodity/commodity')}"><span class="am-icon-sign-out"></span> 商品管理</a></li>
+        <li><a href="{:U('home/score/score')}"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
+         <li><a href="{:U('home/vedio/vedio')}"><span class="am-icon-sign-out"></span> 视频管理</a></li>
+         <li><a href="{:U('home/travel/travel')}"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
       </ul>
 
     </div>
@@ -84,12 +125,15 @@
       <hr></hr>
      <div class="am-tabs am-margin" data-am-tabs="">
       <ul class="am-tabs-nav am-nav am-nav-tabs">
-        <li class="am-active"><a href="#tab2">食品编辑</a></li>
+        <li class="am-active"><a href="#tab1">食品编辑</a></li>
+        <li ><a href="#tab2">食品图片编辑</a></li>
+
       </ul>
 
      
-     
-        <div class="am-tab-panel am-fade am-active am-in" id="tab2">
+      <div style="-moz-user-select: none;" class="am-tabs-bd">
+       
+        <div class="am-tab-panel am-fade am-active am-in" id="tab1">
         <foreach name="list" item="vo">
           <form class="am-form" method="post" action="{:U('home/food/to_editfood',array('comm_id'=>$vo['comm_id']))}">
           
@@ -139,17 +183,52 @@
               </div>
               <div class="am-u-sm-12 am-u-md-10">
                 <textarea rows="10" placeholder="食品描述..." name="comm_descr">{$vo.comm_descr}</textarea>
-                <input type="submit" name="" value="提交" style="float:right">
+                <font color="red"><div id='food_1'></div></font>
+                <button type="submit" class="am-btn am-btn-primary am-btn-xs" style="float:right" onclick="return toVaild_efood()">提交保存</button>
               </div>
 
             </div>
-
-           
 
           </form>
           </foreach>
         </div>
 
+        <div class="am-tab-panel am-fade am-active am-in" id="tab2">
+         <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                食品名称:
+              </div>
+              <div class="am-u-sm-8 am-u-md-4">
+                {$vo.comm_name}
+              </div>
+              <div class="am-hide-sm-only am-u-md-6"></div>
+          </div>
+        <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                当前图片:
+              </div>
+              <div class="am-u-sm-8 am-u-md-4">
+              <img src="{:C('FOOD_IMG')}{$vo.comm_picture_url}" style="max-height:500px;max-width:100%">
+              </div>
+              <div class="am-hide-sm-only am-u-md-6"></div>
+        </div>
+
+        <div class="am-g am-margin-top">
+              <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
+                上传新的食品图片:
+              </div>
+              <form method="post" action="{:U('home/food/editfoodimg')}" enctype="multipart/form-data">
+              <input type="text" name="comm_id" value="{$vo.comm_id}" style="display:none">
+              <div class="am-u-sm-12 am-u-md-10">
+                <div class="form-group">
+                     <input id="file-1" name="pic_all[]" type="file" class="file"  multiple=true>
+                </div>
+                <font color="red"><div id='food_2'></div></font>
+                <button type="submit" class="am-btn am-btn-primary am-btn-xs" style="float:right" onclick="return toVaild_efood2()">提交保存</button>
+              </div>
+              </form>
+            </div>
+        </div>
         
   
 
@@ -168,11 +247,24 @@
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="__PUBLIC__/assets/js/jquery.min.js"></script>
 <!--<![endif]-->
 <script src="__PUBLIC__/assets/js/amazeui.min.js"></script>
 <script src="__PUBLIC__/assets/js/app.js"></script>
 
 
 </body>
+<script>
+function initFileInput(ctrName){
+    var control = $("#"+ctrName);
+    control.fileinput({
+        showUpload : false,
+        maxFileCount: 1,
+        language : 'zh',
+        allowedPreviewTypes : [ 'image' ],
+        allowedFileExtensions : [ 'jpg', 'png', 'gif' ],
+        maxFileSize : 2000,
+    });
+   }
+initFileInput("file-1");
+</script>
 </html>

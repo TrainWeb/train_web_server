@@ -31,9 +31,9 @@ class VedioController extends Controller {
             echo "error".$upload->getError();
         }else
         {
-            echo __ROOT__.'/Uploads/'.$info['savepath'].$info['savename'];
+            echo $info['savename'];
         }
-        $data['name'] = $info['savepath'].$info['savename'];
+        $data['name'] = $info['savename'];
     }
 
     }
@@ -51,7 +51,7 @@ class VedioController extends Controller {
         if(!$info){
             $this->error($upload->getError());
         }else{
-            $url = __ROOT__.'/Uploads/'.$info[0]['savepath'].$info[0]['savename'];
+            $url = $info[0]['savename'];
 
             $Film_Db = M('film');
 
@@ -66,7 +66,7 @@ class VedioController extends Controller {
 
             $result = $Film_Db -> add($data);
             if($result){
-                $this->success('数据写入成功');
+                $this->success('数据写入成功',U('home/vedio/vedio'));
             }else
             {
                 $this->error('添加失败');
@@ -83,15 +83,15 @@ class VedioController extends Controller {
         } 
 
 
-        $img_url     =  '.'.substr($result[0]['f_image_url'],16);
-        $vedio_url   =  '.'.substr($result[0]['f_source_url'],16);
+        $img_url     =  '.'.C('DEL_VEDIO_IMG').$result[0]['f_image_url'];
+        $vedio_url   =  '.'.C('DEL_VEDIOS').$result[0]['f_source_url'];
 
 
         $del_result = $Film_Db->where($where)->delete();
         if($del_result){
             delfile($img_url);
             delfile($vedio_url);
-            $this->success("删除数据成功");
+            $this->success("删除数据成功",U('home/vedio/vedio'));
         }else{
             $this->error("删除失败");
     }
@@ -123,7 +123,7 @@ class VedioController extends Controller {
 
         $result = $Film_Db->where($where)->save($data);
          if($result){
-            $this->success('修改成功');
+            $this->success('修改成功',U('home/vedio/vedio'));
         }else{
             $this->error('修改失败或数据没有修改');
         }
@@ -157,6 +157,72 @@ class VedioController extends Controller {
         $this->assign('list',$result);
         $this->assign('list1',$result1);
         $this->display();
+
+    }
+
+    public function editvedioimg(){
+        $f_id = I('f_id');
+        $where = "f_id =".$f_id;
+        $film = M('film');
+        $result = $film->where($where)->select();
+        if($result==null)
+            $this->error('数据查询出错');
+
+        $url_del     =  '.'.C('DEL_VEDIO_IMG').$result[0]['f_image_url'];
+        delfile($url_del);
+
+        $upload = new \Think\Upload();
+        $upload->maxSize=3145728;
+        $upload->exts= array('jpg','gif','png','jpeg' );
+        $upload->saveName = time().'_'.mt_rand();;
+        $upload->rootPath='./Uploads/';
+        $upload->savePath='vedio_img/';
+        $upload->autoSub = false;
+        $info   =   $upload->upload();
+        if(!$info){
+            $this->error($upload->getError());
+        }else{
+            $url = $info[0]['savename'];
+
+
+            $data['F_Image_Url'] = $url;         
+
+            $result = $film->where($where)->save($data);
+            if($result){
+                $this->success('图片修改成功',U('home/vedio/vedio'));
+            }else
+            {
+                $this->error('修改失败');
+            }
+        }
+    }
+
+    public function editvediosource(){
+        $vedio_url = I('vedio_url');
+        $vedio_id  = I('vedio_id');
+
+        if($vedio_url=="")
+            $this->error('上传新的视频路径获取错误，请先上传视频');
+
+        $film = M('film');
+        $result = $film->where($where)->select();
+
+        if($result == null){
+            $this->error('找不到相关视频编号');
+        }
+
+        $url_del     =  '.'.C('DEL_VEDIOS').$result[0]['f_source_url'];
+        
+
+        $data['F_ID'] = $vedio_id; 
+        $data['F_Source_Url']   = $vedio_url;
+        $result = $film->save($data);
+        if($result){
+            delfile($url_del);
+            $this->success('修改视频内容成功',U('home/vedio/vedio'));
+        }else{
+            $this->error('修改视频内容失败');
+        }
 
     }
 }

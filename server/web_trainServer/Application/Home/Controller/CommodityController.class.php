@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class CommodityController extends Controller{
+class CommodityController extends CommonController{
 	 public function commodity(){
         $Food_Db = M('commodity');
         $where   = 'Comm_Type = 2';
@@ -42,9 +42,13 @@ class CommodityController extends Controller{
         $data['Comm_Discounted'] = I('comm_discounted');
         $data['Comm_Descr']    =  I('comm_descr');
 
+        $where_repeatName = 'Comm_Name ="'.I('comm_name').'"';
+        $result_repeat = $Food_Db->where($where_repeatName)->select();
+        if($result_repeat!=null)
+            $this->error('和其他商品名称重复，请修改名称');
         $result = $Food_Db->where($where)->save($data);
         if($result){
-            $this->success('修改成功');
+            $this->success('修改成功',U('home/commodity/commodity'));
         }else{
             $this->error('修改失败或数据没有修改');
         }
@@ -60,14 +64,14 @@ class CommodityController extends Controller{
             $this -> error('删除失败，没有在数据库中查到该数据或数据已删除');
         }
 
-        $url     =  '.'.substr($result[0]['comm_picture_url'],16);
+        $url     =  '.'.C('DEL_COMM_IMG').$result[0]['comm_picture_url'];
 
 
 
         $del_result = $Food_Db->where($where)->delete();
         if($del_result){
             delfile($url);
-            $this->success("删除数据成功");
+            $this->success("删除数据成功",U('home/commodity/commodity'));
         }else{
             $this->error("删除失败");
         }
@@ -94,6 +98,43 @@ class CommodityController extends Controller{
         $this->assign('list',$result);
         $this->assign('list1',$result1);
         $this->display();
+    }
+
+    public function editcommodityimg(){
+         $comm_id = I('comm_id');
+        $where = "comm_id =".$comm_id;
+        $food  = M('commodity');
+        $result = $food->where($where)->select();
+        if($result==null)
+            $this->error('数据查询出错');
+
+        $url     =  '.'.C('DEL_COMM_IMG').$result[0]['comm_picture_url'];
+        delfile($url_del);
+
+        $upload = new \Think\Upload();
+        $upload->maxSize=3145728;
+        $upload->exts= array('jpg','gif','png','jpeg' );
+        $upload->saveName = time().'_'.mt_rand();;
+        $upload->rootPath='./Uploads/';
+        $upload->savePath='comm_img/';
+        $upload->autoSub = false;
+        $info   =   $upload->upload();
+        if(!$info){
+            $this->error($upload->getError());
+        }else{
+            $url =$info[0]['savename'];
+
+
+            $data['Comm_Picture_Url'] = $url;         
+
+            $result = $food->where($where)->save($data);
+            if($result){
+                $this->success('图片修改成功',U('home/commodity/commodity'));
+            }else
+            {
+                $this->error('修改失败');
+            }
+        }
     }
 }
 

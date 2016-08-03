@@ -1,8 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class AdminController extends CommonController {
-
+class AdminController extends CommonController{
 
     public function index(){
         $this->display();
@@ -15,6 +14,8 @@ class AdminController extends CommonController {
     }
 
     public function admin(){
+        $count = 1000;
+        $this->assign('count',$count);
         $this->display();
     }
 }

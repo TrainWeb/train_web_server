@@ -1,19 +1,10 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class RouteController extends Controller{
+class RouteController extends CommonController{
 
 	public function route(){
 
-
-		  /*$Station_Db = M('station');
-        $count   = $Station_Db->count();
-        $Page    = getpage($count,20);
-        $show    = $Page->show();
-        $list    = $Station_Db->order('s_id')->limit($Page->firstRow.','.$Page->listRows)->select();
-        $this->assign('result',$list);
-        $this->assign('page',$show);
-    	$this->display();*/
 		$train = M('train');
 		$count = $train->count();
 		$Page  = getpage($count,20);
@@ -33,7 +24,8 @@ class RouteController extends Controller{
 
 		$station = M('station');
 
-		for ($i=0; $i < count($firststation); $i++) { 
+		for ($i=0; $i < count($firststation); $i++) {
+		if(($firststation[$i]!=null)&&($laststation[$i]!=null)) 
 			$findfirst = "S_ID =".$firststation[$i];
 			$findlast  = "S_ID =".$laststation[$i];
 			$firstresult = $station->where($findfirst)->select();
@@ -47,7 +39,7 @@ class RouteController extends Controller{
 	
 		$this->assign('list',$result);
 		$this->assign('page',$show);
-        $this->display(); 
+        $this->display();
     }
 
     public function addroute(){
@@ -55,7 +47,6 @@ class RouteController extends Controller{
     }
 
 	public function to_addroute(){
-		echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
 		if(!IS_POST) $this->error('页面不存在');
 
 		$station_info = I('route_number');
@@ -80,6 +71,8 @@ class RouteController extends Controller{
 			$data['S_Name'] = $arrayName[$i]; 
 			$station_id[$i] = $station->where($data)->getField('S_ID');
 			if($station_id[$i]==NULL){
+				$where_train = 'Train_id ='.$result;
+				$train->where($where)->delete();
 				$this->error("请先去站点管理添加该站点：".$arrayName[$i]);
 			}
 		}
@@ -109,7 +102,7 @@ class RouteController extends Controller{
 		$Station_Db = M('station');
 		$result = $Station_Db->where($where)->delete();
 		if($result)
-			$this->success("删除成功");
+			$this->success("删除成功",'route');
 		else
 			$this->error("删除失败");
 	}
@@ -180,7 +173,7 @@ class RouteController extends Controller{
 		$train_router->where($where)->delete();
 		$train->where($where)->delete();
 
-		$this->success('删除成功');
+		$this->success('删除成功',U('home/route/route'));
 
 	}
 }

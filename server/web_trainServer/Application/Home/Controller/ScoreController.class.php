@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class ScoreController extends Controller {
+class ScoreController extends CommonController {
 
     public function score(){
     	$Point_Db =  M('points_reward');
@@ -19,6 +19,13 @@ class ScoreController extends Controller {
     }
 
     public function to_addscore(){
+        $Point_Db = M('points_reward');
+            $where_repeat = 'Reward_Name ="'.I('name').'"';
+        $result_repeat = $Point_Db->where($where_repeat)->select();
+        if($result_repeat!=null)
+            $this->error('添加错误：奖品名称已存在,请修改奖品名称');
+
+
     	$upload = new \Think\Upload();
 		$upload->maxSize=3145728;
 		$upload->exts= array('jpg','gif','png','jpeg' );
@@ -30,10 +37,7 @@ class ScoreController extends Controller {
 		if(!$info){
 			$this->error($upload->getError());
 		}else{
-			$url = __ROOT__.'/Uploads/'.$info[0]['savepath'].$info[0]['savename'];
-
-			$Point_Db = M('points_reward');
-
+			$url = $info[0]['savename'];
 
 			$data['Reward_Name'] = I('name');
 			$data['Reward_Picture'] = $url;
@@ -42,7 +46,7 @@ class ScoreController extends Controller {
 			
 			$result = $Point_Db -> add($data);
 			if($result){
-				$this->success('数据写入成功');
+				$this->success('数据写入成功',U('home/score/score'));
 			}else
 			{
 				$this->error('添加失败');
@@ -67,9 +71,14 @@ class ScoreController extends Controller {
 		$data['Need_Points'] = I('need_point');
 		$data['TIME_OUT'] = I('time_out');
 
+        $where_repeat = 'Reward_Name ="'.I('name').'"';
+        $result_repeat = $Point->where($where_repeat)->select();
+        if($result_repeat!=null)
+            $this->error('添加错误：奖品名称已存在,请修改奖品名称');
+
 		$result = $Point->where($where)->save($data);
 		if($result)
-			$this->success('积分奖品修改成功');
+			$this->success('积分奖品修改成功',U('home/score/score'));
 		else
 			$this->error('积分奖品数据修改失败或数据并未改变无需修改');
     }
@@ -84,14 +93,14 @@ class ScoreController extends Controller {
             $this -> error('删除失败，没有在数据库中查到该数据或数据已删除');
         }
 
-        $url     =  '.'.substr($result[0]['comm_picture_url'],16);
+        $url     =  '.'.C('DEL_SCORE_IMG').$result[0]['reward_picture'];
 
 
 
         $del_result = $Point->where($where)->delete();
         if($del_result){
             delfile($url);
-            $this->success("删除数据成功");
+            $this->success("删除数据成功",U('home/score/score'));
         }else{
             $this->error("删除失败");
         }
@@ -109,6 +118,40 @@ class ScoreController extends Controller {
         }
         $this->assign('list',$result);
         $this->display();
+    }
+
+    public function editscoreimg(){
+        $reward_id = I('reward_id');
+        $where = "reward_id =".$reward_id;
+        $score  = M('points_reward');
+        $result = $score->where($where)->select();
+        if($result==null)
+            $this->error('数据查询出错');
+
+        $url_del     =  '.'.C('DEL_SCORE_IMG').$result[0]['reward_picture'];
+        delfile($url_del);
+        $upload = new \Think\Upload();
+        $upload->maxSize=3145728;
+        $upload->exts= array('jpg','gif','png','jpeg' );
+        $upload->saveName = time().'_'.mt_rand();;
+        $upload->rootPath='./Uploads/';
+        $upload->savePath='score_img/';
+        $upload->autoSub = false;
+        $info   =   $upload->upload();
+        if(!$info){
+            $this->error($upload->getError());
+        }else{
+            $url = $info[0]['savename'];
+            $data['Reward_Picture'] = $url; 
+            $data['ReWard_ID']      = $reward_id;
+            $result = $score->save($data);
+            if($result){
+                $this->success('图片修改成功',U('home/score/score'));
+            }else
+            {
+                $this->error('修改失败');
+            }
+        }
     }
 
 }

@@ -3,28 +3,67 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>高铁方舟后台管理</title>
-        <meta name="description" content="这是一个 index 页面">
-        <meta name="keywords" content="index">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="renderer" content="webkit">
-        <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <link rel="icon" type="image/png" href="__PUBLIC__/assets/i/favicon.png">
-        <link rel="apple-touch-icon-precomposed" href="__PUBLIC__/assets/i/app-icon72x72@2x.png">
-        <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-        <link rel="stylesheet" href="__PUBLIC__/assets/css/amazeui.min.css"/>
-        <link rel="stylesheet" href="__PUBLIC__/assets/css/admin.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>高铁方舟后台管理</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="__PUBLIC__/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="__PUBLIC__/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="__PUBLIC__/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="__PUBLIC__/assets/css/admin.css">
 
-        <link href="__PUBLIC__/fileinput/css/bootstrap.min.css" rel="stylesheet">
-        <link href="__PUBLIC__/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-        <script src="__PUBLIC__/fileinput/js/jquery-2.0.3.min.js"></script>
-        <script src="__PUBLIC__/fileinput/js/fileinput.js" type="text/javascript"></script>
-        <script src="__PUBLIC__/fileinput/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="__PUBLIC__/fileinput/js/fileinput_locale_zh.js" type="text/javascript"></script>
+
+  <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  <link href="__PUBLIC__/fileinput/css/bootstrap.min.css" rel="stylesheet">
+  <link href="__PUBLIC__/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="__PUBLIC__/fileinput/js/jquery-2.0.3.min.js"></script>
+  <script src="__PUBLIC__/fileinput/js/fileinput.js" type="text/javascript"></script>
+  <script src="__PUBLIC__/fileinput/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="__PUBLIC__/fileinput/js/fileinput_locale_zh.js" type="text/javascript"></script>
+<script type="text/javascript">
+        function toVaild_food(){
+
+          var checkNum =    /^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
+          var checkDiscounts =  /^(\d(\.\d)?|10)$/;
+          var checkNumber =  /^[0-9]*[1-9][0-9]*$/;
+          if($("input[name='foodname']").val()==""){
+            $("#resultObj").text("*食品名称不能为空");
+            return false;
+          }
+          if(!(checkNum.test($("input[name='foodprice']").val()))){
+            $("#resultObj").text("*食品价格输入格式不正确，应为数字");
+            return false;
+          }
+          if(!(checkDiscounts.test($("input[name='fooddiscounts']").val()))){
+            $("#resultObj").text("*食品折扣需要在0-10之间");
+            return false;
+          }
+          if(!(checkNumber.test($("input[name='foodnumber']").val()))){
+            $("#resultObj").text("*食品数量应为正整数");
+            return false;
+          }
+          if($("#file-1").val()==""){
+            $("#resultObj").text("*请上传一张关于食品的图片");
+            return false;
+          }
+          return true;
+        }
+        </script>
+
+
     </head>
     <body>
-
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
 
 <header class="am-topbar am-topbar-inverse admin-header">
   <div class="am-topbar-brand">
@@ -41,9 +80,9 @@
           <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-          <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+    <!--       <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li> -->
+          <li><a href="{:U('home/admin/logout')}"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
       <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
@@ -51,9 +90,8 @@
   </div>
 </header>
 
-
 <div class="am-cf admin-main">
-  <!-- sidebar start -->
+   <!-- sidebar start -->
   <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
     <div class="am-offcanvas-bar admin-offcanvas-bar">
       <ul class="am-list admin-sidebar-list">
@@ -62,14 +100,14 @@
           <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-sign-out"></span> 高铁管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
             <li><a href="{:U('home/station/station')}" class="am-cf"> 高铁站点</a></li>
-            <li><a href="{:U('home/route/route')}">高铁路线<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+            <li><a href="{:U('home/route/route')}">高铁路线</a></li>
           </ul>
         </li>
         <li><a href="{:U('home/food/food')}"><span class="am-icon-sign-out"></span> 食品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 商品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 视频管理</a></li>
-         <li><a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
+        <li><a href="{:U('home/commodity/commodity')}"><span class="am-icon-sign-out"></span> 商品管理</a></li>
+        <li><a href="{:U('home/score/score')}"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
+         <li><a href="{:U('home/vedio/vedio')}"><span class="am-icon-sign-out"></span> 视频管理</a></li>
+         <li><a href="{:U('home/travel/travel')}"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
       </ul>
 
     </div>
@@ -150,20 +188,12 @@
                 上传食品图片
               </div>
               <div class="am-u-sm-12 am-u-md-10">
-              
-
-            
-
-          
-                
+                       
                 <div class="form-group">
                      <input id="file-1" name="pic_all[]" type="file" class="file"  multiple=true>
                 </div>
-                
-        
-
-
-                <input type="submit" name="" value="提交">
+                <font color="red"><div id='resultObj'></div></font>
+               <button type="submit" class="am-btn am-btn-primary am-btn-xs" style="float:right" onclick="return toVaild_food()">提交保存</button>
 
               </div>
 

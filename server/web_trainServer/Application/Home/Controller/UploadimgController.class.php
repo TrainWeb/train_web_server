@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-Class UploadimgController extends Controller{
+Class UploadimgController extends CommonController{
 	public function Uploadimg(){
 		$upload = new \Think\Upload();
 		$upload->maxSize=3145728;
@@ -14,7 +14,7 @@ Class UploadimgController extends Controller{
 		if(!$info){
 			$this->error($upload->getError());
 		}else{
-			$url = __ROOT__.'/Uploads/'.$info[0]['savepath'].$info[0]['savename'];
+			$url = $info[0]['savename'];
 
 			$Food_Db = M('commodity');
 
@@ -26,6 +26,11 @@ Class UploadimgController extends Controller{
 			$data['Comm_Descr'] = I('fooddiscribe');
 			$data['Comm_Counts'] = I('foodnumber');
 			$data['Comm_Discounted'] = I('fooddiscounts');
+
+			$where_repeatName = 'Comm_Name ="'.I('foodname').'"';
+        	$result_repeat = $Food_Db->where($where_repeatName)->select();
+        	if($result_repeat!=null)
+            $this->error('和其他物品名称重复，请修改名称');
 
 			$result = $Food_Db -> add($data);
 			if($result){
@@ -51,7 +56,7 @@ Class UploadimgController extends Controller{
 		if(!$info){
 			$this->error($upload->getError());
 		}else{
-			$url = __ROOT__.'/Uploads/'.$info[0]['savepath'].$info[0]['savename'];
+			$url = $info[0]['savename'];
 
 			$Food_Db = M('commodity');
 
@@ -64,9 +69,14 @@ Class UploadimgController extends Controller{
 			$data['Comm_Counts'] = I('foodnumber');
 			$data['Comm_Discounted'] = I('fooddiscounts');
 
+			$where_repeatName = 'Comm_Name ="'.I('foodname').'"';
+        	$result_repeat = $Food_Db->where($where_repeatName)->select();
+        	if($result_repeat!=null)
+            $this->error('和其他商品名称重复，请修改名称');
+
 			$result = $Food_Db -> add($data);
 			if($result){
-				$this->success('数据写入成功');
+				$this->success('数据写入成功',U('home/commodity/commodity'));
 			}else
 			{
 				$this->error('添加失败');

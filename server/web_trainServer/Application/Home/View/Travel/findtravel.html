@@ -17,11 +17,11 @@
 
   <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common.css">
 
-  <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="__PUBLIC__/css/buttons.css">
-  <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <script src="__PUBLIC__/bootstrap/js/jquery.min.js"></script>
+  <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
    function find_click(){
@@ -34,7 +34,7 @@
 </head>
 <body>
 <!--[if lte IE 9]>
-<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器， UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
   以获得更好的体验！</p>
 <![endif]-->
 
@@ -53,9 +53,9 @@
           <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-          <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+    <!--       <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li> -->
+          <li><a href="{:U('home/admin/logout')}"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
       </li>
       <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
@@ -64,23 +64,23 @@
 </header>
 
 <div class="am-cf admin-main">
-  <!-- sidebar start -->
+   <!-- sidebar start -->
   <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
     <div class="am-offcanvas-bar admin-offcanvas-bar">
       <ul class="am-list admin-sidebar-list">
         <li><a href="{:U('home/admin/admin')}"><span class="am-icon-home"></span> 首页</a></li>
         <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 高铁管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-sign-out"></span> 高铁管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-            <li><a href="{:U('home/admin/station')}" class="am-cf"><span class="am-icon-check"></span> 高铁站点</a></li>
-            <li><a href="javascript:void(0);"><span class="am-icon-puzzle-piece"></span> 高铁路线</a></li>
+            <li><a href="{:U('home/station/station')}" class="am-cf"> 高铁站点</a></li>
+            <li><a href="{:U('home/route/route')}">高铁路线</a></li>
           </ul>
         </li>
-        <li><a href="{:U('home/food/food')}"><span class="am-icon-table"></span> 食品管理</a></li>
-        <li><a href="javascript:void(0);"><span class="am-icon-pencil-square-o"></span> 商品管理</a></li>
-        <li><a href="{:U('home/Score/score')}"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
-         <li><a href="{:U('home/Video/video')}"><span class="am-icon-sign-out"></span> 视频管理</a></li>
-         <li><a href="{:U('home/Travel/travel')}"><span class="am-icon-sign-out"></span> 旅行管理<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+        <li><a href="{:U('home/food/food')}"><span class="am-icon-sign-out"></span> 食品管理</a></li>
+        <li><a href="{:U('home/commodity/commodity')}"><span class="am-icon-sign-out"></span> 商品管理</a></li>
+        <li><a href="{:U('home/score/score')}"><span class="am-icon-sign-out"></span> 积分奖品</a></li>
+         <li><a href="{:U('home/vedio/vedio')}"><span class="am-icon-sign-out"></span> 视频管理</a></li>
+         <li><a href="{:U('home/travel/travel')}"><span class="am-icon-sign-out"></span> 旅行管理</a></li>
       </ul>
 
     </div>
@@ -135,15 +135,81 @@
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span>   图片及描述</button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 地图路线</button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary" data-toggle="modal" 
+   data-target="#myModal{$vo.sce_id}"><span class="am-icon-pencil-square-o"></span>   图片及描述</button>
+
+   <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal{$vo.sce_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:99999">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" 
+                           data-dismiss="modal" aria-hidden="true">
+                              &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                           景点详情
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                        <p>景点图片:</p>
+                        <img src="{:C('SCE_IMG')}{$vo.sce_picture}" style="width:100%;max-height:400px;">
+                        <p>景点描述：{$vo.description}</p>
+                     </div>
+
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" 
+                           data-dismiss="modal">关闭
+                        </button>
+                     </div>
+                  </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+            </div>
+                    
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary" data-toggle="modal" 
+   data-target="#mapModal{$vo.sce_id}"><span class="am-icon-pencil-square-o" ></span> 路线地图</button>
+
+                      <!-- 模态框（Modal） -->
+            <div class="modal fade" id="mapModal{$vo.sce_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:99999">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" 
+                           data-dismiss="modal" aria-hidden="true">
+                              &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                           路线地图
+                        </h4>
+                     </div>
+                     <div class="modal-body">
+                      <?php
+                      if($vo['sce_router']=="scenic/router/default.png"){
+                      echo '该景点目前没有路线地图，需要添加路线地图';
+                      }else{
+                      echo '
+                        <img src="'.C('MAP_IMG').$vo['sce_router'].'" style="width:100%;max-height:400px;">
+                     ';
+                      }
+                      ?>
+                     </div>
+
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" 
+                           data-dismiss="modal">关闭
+                        </button>
+                     </div>
+                  </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                      <a href="{:U('home/travel/edittravel',array('id'=>$vo['sce_id']))}"><button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button"><span class="am-icon-pencil-square-o"></span> 编辑</button></a>
+                      <a href="{:U('home/travel/addmap',array('id'=>$vo['sce_id']))}"><button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button"><span class="am-icon-pencil-square-o"></span> 路线地图编辑</button></a>
                       <a href="{:U('home/travel/deletetravel',array('id'=>$vo['sce_id']))}"><button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" type="button"><span class="am-icon-trash-o"></span> 删除</button></a>
                     </div>
                   </div>
@@ -152,12 +218,6 @@
              </foreach>
               </tbody>
             </table>
-            <div class="am-cf">
-              <div class="pages" style="float:right;">
-                        {$page}
-              </div>
-             
-            </div>
             <hr>
       
         </div>
